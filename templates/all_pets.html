@@ -12,15 +12,15 @@
             <p class="h3"> {{pet.name}} </p>
             <img class="img-thumbnail" src="{{pet.photo_url}}">
                 {% if pet.available == true %}
-                    <p class="h6">Available!</p>
+                    <p class="h6 text-success">Available!</p>
                 {% else %}
-                    <p class="h6">Sorry, not available.</p>
+                    <p class="h6 text-danger">Sorry, not available.</p>
                 {% endif %}
         </div>
 {% endfor %}
     </div>
 </div>
 
-<p><a href="/add">Add Pet</a></p>
+<a class="btn btn-primary" href="/add">Add Pet</a>
 
 {% endblock %}

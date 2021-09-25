@@ -1,4 +1,4 @@
-from forms import AddPetForm
+from forms import AddPetForm, EditPetForm
 from flask import Flask, request, redirect, render_template
 # from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Pet
@@ -39,4 +39,16 @@ def add_pet():
     else:
         return render_template('add_pet.html', form=form)
 
+@app.route('/<int:pet_id>')
+def edit_pet(pet_id):
+    """Edit Pet."""
 
+    pet = Pet.query.get_or_404(pet_id)
+    form = EditPetForm(obj=pet)
+
+    if form.validate_on_submit():
+        pet.notes = form.notes.data
+        pet.available = form.available.data
+        pet.photo_url = form.photo_url.data
+        db.session.commit()
+    return render_template('edit_pet.html', pet=pet, form=form)
