@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}All Pets{% endblock %}
+{% block head %} {% endblock %}
+
+{% block content %}
+<h1>All Pets</h1>
+
+{% for pet in pets %}
+<p>
+{{pet.name}}
+{{pet.photo_url}} 
+{{pet.available}}
+</p>
+{% endfor %}
+
+<p><a href="/add">Add Pet</a></p>
+
+{% endblock %}
